@@ -15,6 +15,7 @@
 	<hr>
 	<form id="sortingForm">
 		<div class="form">
+			<div id="divError" style="color:red;font-size: medium;font-weight: bold;display: none;" ></div>
 			<table>
 				<tr>
 					<td>Previously Generated Numbers:</td>
@@ -25,7 +26,7 @@
 					<td id="prevSortedTd"></td>
 				</tr>
 				<tr>
-					<td>Enter 50 Numbers between 1 to 100 :</td>
+					<td>Enter Numbers between 1 to 100 :</td>
 					<!-- <td><input type="button" value="Generate Random Numbers"
 						id="generateRandom"></td> -->
 					<td><input id="txtInput" style="width:800px;"></td>	

@@ -6,7 +6,6 @@
 
 	<groupId>com.hm.sortingservice</groupId>
 	<artifactId>sorting-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<name>sorting-service</name>
@@ -119,4 +118,5 @@
 	</build>
 
 
+	<version>1.0</version>
 </project>

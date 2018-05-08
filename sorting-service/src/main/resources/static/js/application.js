@@ -10,34 +10,25 @@ $(document).ready(function () {
 		success: function(data){
 			if(data != null){
 				var prevObj = JSON.parse(data);
-				$('#prevGenTd').text(prevObj.original);
-				$('#prevSortedTd').text(prevObj.sorted);
+				if(prevObj.err === ""){
+					$('#prevGenTd').text(prevObj.original);
+					$('#prevSortedTd').text(prevObj.sorted);
+				}else{
+					$('#divError').text(prevObj.err);
+					$('#divError').show();
+				}
 			}
 			
 		}
 	});
 	
-	//$('#btnSort').hide();
-	$('#generateRandom').click(function(e){
-		console.log('button clicked');
-		$.ajax({
-			url: "getRandomNumbers",
-			type: "GET"	,
-			success : function(data){
-				$('#divGeneratedNumbers').text(data);
-				//randomNumberData = data;
-				$('#btnSort').show();
-			}
-		});
-	});
-	
 	$('#btnSort').click(function(e){
 		console.log('sort clicked');
+		$('#divError').hide();
 		var inputVal = $('#txtInput').val();
 		
 		if(inputVal !== ""){
 			inputVal = inputVal.split(" ");
-			//randomNumberData = JSON.stringify(inputVal);
 			$.ajax({
 				url: "sortRandomNumbers",
 				type: "POST",
@@ -45,9 +36,14 @@ $(document).ready(function () {
 				success : function(data){
 					var sortedObj = JSON.parse(data);
 					
-					$('<div>').css({'word-wrap':'break-word'}).text('Sorted Values : ' + sortedObj.value).appendTo('.form');
-					$('<div>').css({'word-wrap':'break-word'}).text('Time Taken to Sort: ' + sortedObj.time).appendTo('.form');
-					$('<div>').css({'word-wrap':'break-word'}).text('Iterations done: ' + sortedObj.itr).appendTo('.form');
+					if(sortedObj.err === ''){
+						$('<div>').css({'word-wrap':'break-word'}).text('Sorted Values : ' + sortedObj.value).appendTo('.form');
+						$('<div>').css({'word-wrap':'break-word'}).text('Time Taken to Sort: ' + sortedObj.time).appendTo('.form');
+						$('<div>').css({'word-wrap':'break-word'}).text('Iterations done: ' + sortedObj.itr).appendTo('.form');
+					}else{
+						$('#divError').text(sortedObj.err);
+						$('#divError').show();
+					}
 				}
 			});
 		}
